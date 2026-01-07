@@ -1,0 +1,31 @@
+services:
+    mlflow:
+        image: ghcr.io/mlflow/mlflow:v2.14.1 
+        container_name: mlflow-fed
+        ports:
+          - "5000:5000"
+        volumes:
+          - ./data/mlflow:/mlflow:3.8.1
+        environment:
+          MLFLOW_BACKEND_STORE_URI: sqlite:////mlflow/mlflow.db
+          MLFLOW_DEFAULT_ARTIFACT_ROOT: /mlflow/artifacts
+        command: >
+          mlflow server 
+          --host 0.0.0.0 
+          --port 5000 
+          --backend-store-uri sqlite:////mlflow/mlflow.db 
+          --default-artifact-root /mlflow/artifacts
+
+    chromadb:
+        image: chromadb/chroma:1.4.0
+        container_name: chromadb-fed
+        ports:
+        - "8000:8000"
+        volumes:
+        - ./data/chroma:/data
+        environment:
+        - IS_PERSISTENT=true
+        - ANONYMIZED_TELEMETRY=false
+        restart: unless-stopped
+
+
