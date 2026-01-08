@@ -211,6 +211,108 @@ The interface is intended for **exploration and demonstration**, not production 
 
 ---
 
+## Prerequisites
+
+- **Python**: 3.11+
+- **Docker**: For ChromaDB and MLflow services
+- **Conda**: Recommended for environment management (optional)
+- **Git**: For cloning the repository
+- **System**: 8GB+ RAM recommended for embedding models
+
+---
+
+## Installation & Setup
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Rubenvalrom/Retrieval-Augmented_Generation_in_FED_press_releases.git
+cd Retrieval-Augmented_Generation_in_FED_press_releases
+```
+
+### 2. Create Environment
+
+**Option A: Using Conda (recommended)**
+```bash
+conda env create -f environment.yml
+conda activate rag-fed
+```
+
+**Option B: Using pip**
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### 3. Start Docker Services
+
+Start ChromaDB and MLflow tracking servers:
+
+```bash
+docker-compose up -d
+```
+
+Verify services are running:
+- MLflow UI: http://localhost:5000
+- ChromaDB: http://localhost:8000
+
+---
+
+## Usage
+
+### Pipeline Execution (Step-by-Step)
+
+#### 1. Data Ingestion
+Download FED press conference transcripts:
+```bash
+python data/import_data.py
+```
+
+#### 2. Data Cleaning
+Clean and normalize metadata:
+```bash
+python data/clean_data.py
+```
+
+#### 3. Indexing & Chunking Experiments
+Create embeddings and index documents into Chroma:
+```bash
+python data/insert_data_to_chroma.py
+```
+
+#### 4. Run Experiments
+Execute automated chunking/retrieval experiments:
+```bash
+python src/run_experiments.py
+```
+
+Results are logged to MLflow (http://localhost:5000).
+
+#### 5. Launch Gradio Interface
+Start the interactive Q&A interface:
+```bash
+python main.py
+```
+
+Access the UI at the URL shown in the terminal (typically http://127.0.0.1:7860).
+
+---
+
+### Using MLflow Entry Points
+
+Alternatively, run via MLflow:
+
+```bash
+mlflow run . -e ingest
+mlflow run . -e clean
+mlflow run . -e index
+mlflow run . -e experiments
+mlflow run . -e ui
+```
+
+---
+
 ## License
 
 MIT License
