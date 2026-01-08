@@ -7,9 +7,10 @@ The primary goal is **not** to build a production chatbot, but to **systematical
 
 The system focuses on:
 - Historical **sentiment analysis** (Hawkish / Neutral / Dovish)
-- Multi-period comparisons (e.g. 2008 vs 2020, early vs late 2021)
+- Multi-period comparisons (e.g. 2019 vs 2020, early vs late 2021)
 - Hallucination detection in factual queries
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Rubenvalrom/Retrieval-Augmented_Generation_in_FED_press_releases)
 ---
 
 ## High-level Architecture
