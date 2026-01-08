@@ -185,8 +185,8 @@ def get_judge_3_prompt():
         ### OUTPUT FORMAT:
         Return a valid JSON object:
         {{
-        "interest_rate_match": boolean, (True if the number in Answer exists in Context)
-        "data_availability_match": boolean, (True if the description is supported by Context)
+        "interest_rate_match": boolean, (True if the number in Answer exists in EVIDENCE)
+        "data_availability_match": boolean, (True if the description is supported by EVIDENCE)
         "hallucination_detected": boolean, (True if Answer invents info)
         }}
 

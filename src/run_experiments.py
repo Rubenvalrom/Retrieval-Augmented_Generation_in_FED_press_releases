@@ -147,8 +147,8 @@ def run_experiment(collection_name: str, k_mmr: int):
         print('-'*50)
 
         duration = time.time() - start
-        if duration < 61:
-            sleep_time = 61 - duration
+        if duration < 31:
+            sleep_time = 31 - duration
             time.sleep(sleep_time)
 
     mlflow.log_metric("overall_score", overall_score)
@@ -174,9 +174,9 @@ except Exception as e:
     raise e
 
 # Number of documents to retrieve
-k_values = [15, 30, 45]
+k_values = [20, 30, 50]
 
-for collection_name in collections[0:2]:
+for collection_name in collections:
     for k in k_values:
         run_experiment(collection_name, k)
 
