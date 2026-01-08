@@ -125,30 +125,34 @@ def insert_data_to_chroma(chunks, collection_name, embedding_model, client):
         vectorstore.add_documents(batch)
 
     print(f"{collection_name} has been indexed")
-    
-# Percentile thresholds for semantic chunking
-thresholds = [50, 75, 90, 97.5] 
 
-# For each threshold, chunk documents and insert into Chroma
-for threshold in thresholds:
-    chunks, collection_name = semantic_chunk(documents, threshold, chunk_embedding_model)
-    insert_data_to_chroma(chunks, collection_name, embedding_model, client)
-    print('='*50)
+def main():
+    # Percentile thresholds for semantic chunking
+    thresholds = [50, 75, 90, 97.5] 
 
-# Parameters for recursive character chunking
-chunk_sizes = [500, 1000, 1500]
-overlap_percentages = [10, 15]
-
-# For each combination of chunk size and overlap percentage, chunk documents and insert into Chroma
-for chunk_size in chunk_sizes:
-    for overlap_percentage in overlap_percentages:
-        chunks, collection_name = recursive_chunk(documents, chunk_size, overlap_percentage)
+    # For each threshold, chunk documents and insert into Chroma
+    for threshold in thresholds:
+        chunks, collection_name = semantic_chunk(documents, threshold, chunk_embedding_model)
         insert_data_to_chroma(chunks, collection_name, embedding_model, client)
         print('='*50)
 
-# List all collections in Chroma and their size after insertion
-print("Collections completed:")
-print("-"*51)
-for i, col in enumerate(client.list_collections()):
-    print(f" {i+1}. {col.name} - {col.count()}")
-print("-"*51)
+    # Parameters for recursive character chunking
+    chunk_sizes = [500, 1000, 1500]
+    overlap_percentages = [10, 15]
+
+    # For each combination of chunk size and overlap percentage, chunk documents and insert into Chroma
+    for chunk_size in chunk_sizes:
+        for overlap_percentage in overlap_percentages:
+            chunks, collection_name = recursive_chunk(documents, chunk_size, overlap_percentage)
+            insert_data_to_chroma(chunks, collection_name, embedding_model, client)
+            print('='*50)
+
+    # List all collections in Chroma and their size after insertion
+    print("Collections completed:")
+    print("-"*51)
+    for i, col in enumerate(client.list_collections()):
+        print(f" {i+1}. {col.name} - {col.count()}")
+    print("-"*51)
+
+if __name__ == "__main__":
+    main()

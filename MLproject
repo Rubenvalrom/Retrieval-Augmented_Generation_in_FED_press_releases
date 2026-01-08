@@ -1,0 +1,21 @@
+name: fed-rag
+
+conda_env: environment.yml
+
+entry_points:
+
+  ingest:
+    command: "python data/import_data.py"
+
+  clean:
+    command: "python data/clean_data.py"
+
+  index:
+    command: "python data/insert_data_to_chroma.py"
+
+  experiments:
+    command: "python src/run_experiments.py"
+
+  ui:
+    command: "python main.py"
+
