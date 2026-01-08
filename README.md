@@ -110,7 +110,7 @@ Each configuration is indexed into a **separate Chroma collection**, making resu
 - **Retrieval strategy**: Maximal Marginal Relevance (MMR)
 
 Retrieval parameters explored:
-- `k ∈ {20, 30, 50}`
+- `k ∈ {10, 20, 30, 50}`
 - `fetch_k = 5 × k`
 - `lambda_mult = 0.7`
 
