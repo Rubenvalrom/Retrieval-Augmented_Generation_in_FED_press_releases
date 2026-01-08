@@ -4,14 +4,14 @@ import torch
 import mlflow
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from chromadb import HttpClient
 from operator import itemgetter
 
 from utils.prompts import get_system_prompt
-from utils.evaluate import log_params_from_collection_name, evaluate_query, parse_with_fixer
-from utils.llms import load_model, load_judge_model
+from utils.evaluate import log_params_from_collection_name, evaluate_query
+from utils.format import parse_with_fixer, format_docs
+from utils.llms import load_model, load_judge_model, load_embedding_model
 
 # Initial Set up
 print('-'*50)
@@ -30,11 +30,7 @@ except Exception as e:
 print('-'*50)
 
 # Load embedding model
-embedding_model = HuggingFaceEmbeddings(
-    model_name="BAAI/bge-large-en-v1.5",
-    model_kwargs={'device': device},
-    encode_kwargs={'normalize_embeddings': True}
-)
+embedding_model = load_embedding_model(device=device)
 
 print("Embedding model loaded successfully.")
 print('-'*50)
@@ -54,25 +50,7 @@ except Exception as e:
 
 
 # Format documents for rag chain context
-def format_docs(docs):
-    formatted = []
-    # Iterate through documents, extract metadata and content
-    for doc in docs:
-        # Extract metadata
-        meta = doc.metadata
-        date = meta.get('creationdate', 'Unknown Date')
-        page = meta.get('page', '?')
-        total_pages = meta.get('total_pages', '?')
 
-        # Clean content by replacing newlines with spaces
-        content = doc.page_content.replace("\n", " ")
-
-        formatted.append(f"FRAGMENT [Date: {date} | Page: {page} of {total_pages}] \n{content}")
-    
-    # Combine all formatted documents into a single context string separated by double newlines
-    context = "\n\n".join(formatted)
-
-    return context
 
 prompt = get_system_prompt()
 
@@ -121,7 +99,7 @@ def run_experiment(collection_name: str, k_mmr: int):
     # Rag chain
     rag_chain = (
     {
-        # Extract the string first, THEN pipe it to the retriever
+        # Extract the string first before giving it to the retriever
         "context": (itemgetter("question")) | retriever | format_docs, 
         "question": itemgetter("question")
     }

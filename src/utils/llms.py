@@ -1,7 +1,9 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline, BitsAndBytesConfig
 from langchain_huggingface import HuggingFacePipeline
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_groq import ChatGroq
 import torch
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -48,3 +50,11 @@ def load_judge_model():
     llm = HuggingFacePipeline(pipeline=pipe)
 
     return llm
+
+def load_embedding_model(device="cpu"):
+    embedding_model = HuggingFaceEmbeddings(
+        model_name="BAAI/bge-large-en-v1.5",
+        model_kwargs={'device': device},
+        encode_kwargs={'normalize_embeddings': True}
+    )
+    return embedding_model

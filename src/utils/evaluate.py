@@ -1,25 +1,11 @@
-from langchain_core.output_parsers import StrOutputParser, JsonOutputParser
+from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
 import mlflow
 from operator import itemgetter
-import json_repair
 
 from .prompts import get_judge_1_prompt, get_judge_2_prompt, get_judge_3_prompt
- 
-def parse_with_fixer(text):
-    parser = JsonOutputParser()
-    
-    try:
-        # Normal parsing attempt
-        json_output = parser.parse(text)
+from .format import parse_with_fixer
 
-        return json_output
-    
-    except Exception as e:
-        # Fallback using json_repair
-        json_fixed = json_repair.loads(text)
-        
-        return json_fixed
 
 def log_params_from_collection_name(name: str):
     """
