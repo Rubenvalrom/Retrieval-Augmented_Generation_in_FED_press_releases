@@ -152,7 +152,7 @@ except Exception as e:
     raise e
 
 # Number of documents to retrieve
-k_values = [20, 30, 50]
+k_values = [10, 20, 30, 50]
 
 for collection_name in collections:
     for k in k_values:
