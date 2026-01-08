@@ -252,11 +252,6 @@ Start ChromaDB and MLflow tracking servers:
 ```bash
 docker-compose up -d
 ```
-
-Verify services are running:
-- MLflow UI: http://localhost:5000
-- ChromaDB: http://localhost:8000
-
 ---
 
 ## Usage
