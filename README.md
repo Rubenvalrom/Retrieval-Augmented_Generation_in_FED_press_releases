@@ -60,6 +60,8 @@ All data is treated as **read-only historical text**; no external knowledge is i
 │   ├── insert_data_to_chroma.py# Chunking + embedding + indexing experiments
 │   └── raw/                    # Raw downloaded PDFs
 │   └── clean/                  # Cleaned documents (pickle)
+|   └── chroma/                 # Chroma database
+|   └── mlflow/                 # Mlflow database (contains all runs, artifacts, etc.)
 │
 ├── src/
 │   ├── rag.py                  # Core RAG pipeline
