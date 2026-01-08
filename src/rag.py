@@ -1,6 +1,5 @@
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from chromadb import HttpClient
 from operator import itemgetter
@@ -10,8 +9,8 @@ from utils.llms import load_model, load_embedding_model
 from utils.format import parse_with_fixer, format_docs
 from utils.prompts import get_system_prompt
 
-
 def rag(query):
+
     # Initial Set up
     print('-'*50)
     # Check for GPU availability
@@ -79,4 +78,10 @@ def rag(query):
 
     answer = rag_chain.invoke({"question": query})
 
-    return answer   
+    return answer
+
+if __name__ == "__main__":
+    question = "Provide a sentiment analysis of the early 2024 Federal Reserve press releases and justify your answer with specific references to the text."
+    answer = rag(question)   
+    print(answer)
+    input("Press Enter to continue...")
