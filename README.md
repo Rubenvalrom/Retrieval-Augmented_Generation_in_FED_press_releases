@@ -264,7 +264,7 @@ Verify services are running:
 ### Pipeline Execution (Step-by-Step)
 
 #### 1. Data Ingestion
-Download FED press conference transcripts:
+Download FED press conference transcripts from the Federal Reserve website:
 ```bash
 python data/import_data.py
 ```
@@ -275,8 +275,8 @@ Clean and normalize metadata:
 python data/clean_data.py
 ```
 
-#### 3. Indexing & Chunking Experiments
-Create embeddings and index documents into Chroma:
+#### 3. Chunking & Indexing
+Apply chunking strategies, create embeddings, and index documents into Chroma:
 ```bash
 python data/insert_data_to_chroma.py
 ```
