@@ -154,21 +154,27 @@ dependencies:
       - bcrypt==5.0.0
       - bitsandbytes==0.49.0
       - blinker==1.9.0
+      - blis==1.3.3
       - brotli==1.2.0
       - build==1.3.0
       - cachetools==6.2.4
+      - catalogue==2.0.10
       - chromadb==1.4.0
       - click==8.3.1
+      - cloudpathlib==0.23.0
       - cloudpickle==3.1.2
       - coloredlogs==15.0.1
+      - confection==0.1.5
       - contourpy==1.3.3
       - cryptography==46.0.3
       - cycler==0.12.1
+      - cymem==2.0.13
       - databricks-sdk==0.76.0
       - dataclasses-json==0.6.7
       - distro==1.9.0
       - docker==7.1.0
       - durationpy==0.10
+      - en-core-web-sm==3.8.0
       - faiss-cpu==1.13.2
       - fastapi==0.128.0
       - fastjsonschema==2.21.2
@@ -242,6 +248,7 @@ dependencies:
       - mlflow-tracing==3.8.1
       - mmh3==5.2.0
       - multidict==6.7.0
+      - murmurhash==1.0.15
       - mypy-extensions==1.1.0
       - narwhals==2.15.0
       - nbformat==5.10.4
@@ -265,6 +272,7 @@ dependencies:
       - pfzy==0.3.4
       - plotly==6.5.1
       - posthog==5.4.0
+      - preshed==3.0.12
       - propcache==0.4.1
       - protobuf==6.33.2
       - pyarrow==22.0.0
@@ -298,13 +306,19 @@ dependencies:
       - semantic-version==2.10.0
       - sentence-transformers==5.2.0
       - shellingham==1.5.4
+      - smart-open==7.5.0
       - smmap==5.0.2
       - sniffio==1.3.1
+      - spacy==3.8.11
+      - spacy-legacy==3.0.12
+      - spacy-loggers==1.0.5
       - sqlalchemy==2.0.45
       - sqlparse==0.5.5
+      - srsly==2.5.2
       - starlette==0.50.0
       - sympy==1.13.1
       - tenacity==8.5.0
+      - thinc==8.3.10
       - threadpoolctl==3.6.0
       - tiktoken==0.9.0
       - tokenizers==0.22.1
@@ -314,6 +328,7 @@ dependencies:
       - tqdm==4.67.1
       - transformers==4.57.3
       - typer==0.21.0
+      - typer-slim==0.21.1
       - typing-inspect==0.9.0
       - typing-inspection==0.4.2
       - tzdata==2025.3
@@ -321,11 +336,14 @@ dependencies:
       - uuid-utils==0.12.0
       - uvicorn==0.40.0
       - waitress==3.0.2
+      - wasabi==1.1.3
       - watchfiles==1.1.1
+      - weasel==0.4.3
       - websocket-client==1.9.0
       - websockets==15.0.1
       - werkzeug==3.1.4
       - widgetsnbextension==4.0.15
+      - wrapt==2.0.1
       - xxhash==3.6.0
       - yarl==1.22.0
       - zipp==3.23.0
